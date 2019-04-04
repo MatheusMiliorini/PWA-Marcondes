@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Autenticação com Google oAuth</title>
+        <meta name="google-signin-client_id" content="401876912845-if7h6o9pescadnksn12gradbscvpbtgc.apps.googleusercontent.com">
+        <meta name="google-signin-scope" content="profile email">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <script>
+        function start() {
+          gapi.load('auth2', function() {
+            auth2 = gapi.auth2.init({
+              client_id: '401876912845-if7h6o9pescadnksn12gradbscvpbtgc.apps.googleusercontent.com',
+              // Scopes to request in addition to 'profile' and 'email'
+              scope: 'profile email'
+            });
+          });
+        }
+      </script>
+    </head>
+<body>
+    <a class="nav-item nav-link" href="#" onclick="signOut();">Logout</a>
+    <script>
+        function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                auth2.currentUser.get().reloadAuthResponse();
+            });
+        }
+    </script>
+
+    <div class="row justify-content-md-center mt-4">
+        <div class="col-2">
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+        </div>
+    </div>
+
+    <div>
+        ID: <span id="id"></span> <br>
+        Full Name: <span id="fullname"></span><br>
+        Given Name: <span id="givenname"></span><br>
+        Family Name: <span id="familyname"></span><br>
+        Image URL: <img src="" id="image"><br>
+        E-mail: <span id="email"></span><br>
+    </div>
+
+    <script src="https://apis.google.com/js/client:platform.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log("Image URL: " + profile.getImageUrl());
+            console.log("E-mail: " + profile.getEmail());
+
+            $("#id").html(profile.getId());
+            $("#fullname").html(profile.getName());
+            $("#givenname").html(profile.getGivenName());
+            $("#familyname").html(profile.getFamilyName());
+            $("#image").attr("src", profile.getImageUrl());
+            $("#email").html(profile.getEmail());
+
+            // The ID token you need to pass to your backend:
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+        }
+    </script>
+    
+    <script>
+        $(document).ready(function() {
+            start();
+        });
+    </script>
+</body>
+</html>
