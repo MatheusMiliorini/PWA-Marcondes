@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Autenticação com Google oAuth</title>
-        <meta name="google-signin-client_id" content="401876912845-if7h6o9pescadnksn12gradbscvpbtgc.apps.googleusercontent.com">
+         <meta name="google-signin-client_id" content="401876912845-4iv1rbr1frlaq48dm8kfneiv1b7l7b4j.apps.googleusercontent.com">
         <meta name="google-signin-scope" content="profile email">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-
+        
         <script>
         function start() {
           gapi.load('auth2', function() {
             auth2 = gapi.auth2.init({
-              client_id: '401876912845-if7h6o9pescadnksn12gradbscvpbtgc.apps.googleusercontent.com',
+              client_id: '401876912845-4iv1rbr1frlaq48dm8kfneiv1b7l7b4j.apps.googleusercontent.com',
               // Scopes to request in addition to 'profile' and 'email'
               scope: 'profile email'
             });
@@ -22,6 +23,22 @@
       </script>
     </head>
 <body>
+    <h1 class="text-center">Trabalho de Desenvolvimento Mobile</h1>
+  <hr>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div  class="container">
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent">
+        Menu
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li><a href="index.html" class="nav-link"> Inicial </a></li>
+          <li><a href="index.html" class="nav-link"> Listagem dos Produtos </a></li>
+          <li><a href="categorias.html" class="nav-link"> Categorias de Produtos</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
     <a class="nav-item nav-link" href="#" onclick="signOut();">Logout</a>
     <script>
         function signOut() {
@@ -50,9 +67,12 @@
     <script src="https://apis.google.com/js/client:platform.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="public/js/api.js"></script>
+  <link rel="stylesheet" href="public/css/css.css"/>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
         function onSignIn(googleUser) {
@@ -82,5 +102,18 @@
             start();
         });
     </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer class="bg-secondary pt-4 pb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span>
+        @2019 Direitos reservados Bruna Klaumann e Matheus Miliorini
+      </span>
+    </div>
+</footer>
 </body>
 </html>
