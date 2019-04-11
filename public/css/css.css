@@ -1,0 +1,7 @@
+.opcaoTabela {
+  cursor: pointer;
+}
+
+.opcaoTabela:hover {
+  font-weight: bold;
+}

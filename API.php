@@ -21,7 +21,6 @@ $descricao = filter_input(INPUT_POST, 'descricao');
 $valor = filter_input(INPUT_POST, 'valor');
 $categoria = filter_input(INPUT_POST, 'categoria');
 
-
 try {
     $API = new API();
     switch ($op) {
@@ -32,7 +31,7 @@ try {
             $dados = $API->buscaTodosProdutos();
             break;
         case 'DC':
-            $dados = $API->deletaCategoria($idCategoria);
+            $dados = $API->deletaCategoria($categoria);
             break;
         case 'DP':
             $dados = $API->deletaProduto($produto);
@@ -45,6 +44,9 @@ try {
             break;
         case 'EP':
             $dados = $API->editaProduto($nome, $valor, $categoria, $descricao, $produto);
+            break;
+        case 'EC':
+            $dados = $API->editaCategoria($categoria, $nome);
             break;
         default:
             $dados = "Nenhuma opção de consulta fornecida";
@@ -83,9 +85,9 @@ class API
         return pg_fetch_all(pg_query($this->con, $sql));
     }
 
-    public function deletaCategoria($categoria_id) {
+    public function deletaCategoria($categoria) {
       $sql = "DELETE FROM categorias WHERE categoria_id = $1";
-      return pg_result_status(pg_query_params($this->con, $sql, [$categoria_id]));
+      return pg_affected_rows(pg_query_params($this->con, $sql, [$categoria]));
     }
 
     public function adicionaCategoria($nomeCategoria) {
@@ -115,9 +117,14 @@ class API
         $res = pg_fetch_object(pg_query_params($this->con, $sql, [$categoria]));
         $res = isset($res->categoria_id) ? $res->categoria_id : null;
         $sql = "UPDATE produtos SET nome=$1, valor=$2, categoria_id=$3, descricao=$4 WHERE produto_id=$5";
-        
+
         return pg_result_status(pg_query_params($this->con, $sql, [
             $nome, $valor, $res, $descricao, $produto
         ]));
+    }
+
+    public function editaCategoria($categoria, $nome) {
+      $sql = "UPDATE categorias SET nome = $1 WHERE categoria_id = $2";
+      return pg_result_status(pg_query_params($this->con, $sql, [$nome, $categoria]));
     }
 }

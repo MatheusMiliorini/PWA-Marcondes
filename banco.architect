@@ -86,8 +86,8 @@
    </folder>
   </table>
   <relationships>
-   <relationship id="REL20" populated="true" UUID="4a80ae2e-84d5-455b-ae85-4ac9e01fbc35" deferrability="7" deleteRule="3" fk-table-ref="TAB12" fkCardinality="7" identifying="false" name="categorias_produtos_fk" physicalName="categorias_produtos_fk" pk-table-ref="TAB7" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP21" populated="true" UUID="3eef7eef-e18c-485f-a919-85f895bcf41c" fk-column-ref="COL16" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL8" />
+   <relationship id="REL20" populated="true" UUID="4a80ae2e-84d5-455b-ae85-4ac9e01fbc35" deferrability="7" deleteRule="0" fk-table-ref="TAB12" fkCardinality="7" identifying="false" name="categorias_produtos_fk" physicalName="categorias_produtos_fk" pk-table-ref="TAB7" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP21" populated="true" UUID="bac3230d-4a69-45ee-ae1f-39045f53d08d" fk-column-ref="COL16" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL8" />
    </relationship>
   </relationships>
  </target-database>
