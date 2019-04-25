@@ -13,16 +13,19 @@ $(document).ready(function() {
         html += `<h6>${produto.descricao}</h6>`;
         html += `<h6>R$ ${produto.valor}</h6>`;
         html += `<h6>Categoria: ${produto.nome_categoria}</h6>`;
-        html += `
-        <button class="btn btn-info editar"
-        data-produto-id="${produto.produto_id}"
-        data-produto-nome="${produto.nome}"
-        data-produto-descricao="${produto.descricao}"
-        data-produto-valor="${produto.valor}"
-        data-produto-categoria="${produto.nome_categoria}"
-        >Editar</button>
-        `;
-        html += `<button class="btn btn-danger excluir" data-produto-id="${produto.produto_id}">Excluir</button>`;
+        if (localStorage.getItem("ID_Google") !== null) {
+          html += `
+          <button class="btn btn-info editar"
+          data-produto-id="${produto.produto_id}"
+          data-produto-nome="${produto.nome}"
+          data-produto-descricao="${produto.descricao}"
+          data-produto-valor="${produto.valor}"
+          data-produto-categoria="${produto.nome_categoria}"
+          >Editar</button>
+          `;
+          html += `<button class="btn btn-danger excluir" data-produto-id="${produto.produto_id}">Excluir</button>`;
+        }
+
         html += `</div>`;
         $(".listaProdutos").prepend(html);
       });
@@ -44,8 +47,10 @@ $(document).ready(function() {
       if (!data) return false;
       data.forEach(cat => {
         let html = `<tr><td>${cat.nome}</td>`;
-        html    += `<td class="opcaoTabela editar" data-nome="${cat.nome}" data-id="${cat.categoria_id}">Editar</td>`;
-        html    += `<td class="opcaoTabela excluir" data-nome="${cat.nome}" data-id="${cat.categoria_id}">Excluir</td></tr>`;
+        if (localStorage.getItem("ID_Google") !== null) {
+          html    += `<td class="opcaoTabela editar" data-nome="${cat.nome}" data-id="${cat.categoria_id}">Editar</td>`;
+          html    += `<td class="opcaoTabela excluir" data-nome="${cat.nome}" data-id="${cat.categoria_id}">Excluir</td></tr>`;
+        }
         $tabelaCategorias.append(html);
       });
     },

@@ -54,7 +54,11 @@
 			</tbody>
 		</table>
 
-		<button type="button" id="novaCategoria" class="btn btn-success">Adicionar nova categoria</button>
+		<script>
+		if(localStorage.getItem("ID_Google") !== null) {
+			document.write(`<button type="button" id="novaCategoria" class="btn btn-success">Adicionar nova categoria</button>`);
+		}
+		</script>
 	</div>
 
 </body>

@@ -48,6 +48,9 @@
   <a class="nav-item nav-link" href="#" onclick="signOut();">Logout</a>
   <script>
   function signOut() {
+    localStorage.removeItem("ID_Google");
+    localStorage.removeItem("nome_completito");
+
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       auth2.currentUser.get().reloadAuthResponse();
@@ -84,7 +87,11 @@
   function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    localStorage.setItem("ID_Google",profile.getId());
+
     console.log('Full Name: ' + profile.getName());
+    //localStorage.setItem("nome_completito",profile.getName());
+
     console.log('Given Name: ' + profile.getGivenName());
     console.log('Family Name: ' + profile.getFamilyName());
     console.log("Image URL: " + profile.getImageUrl());
