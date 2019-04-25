@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Autenticação com Google oAuth</title>
-         <meta name="google-signin-client_id" content="401876912845-4iv1rbr1frlaq48dm8kfneiv1b7l7b4j.apps.googleusercontent.com">
-        <meta name="google-signin-scope" content="profile email">
-        <!-- Bootstrap CSS -->
-        
-        <script>
-        function start() {
-          gapi.load('auth2', function() {
-            auth2 = gapi.auth2.init({
-              client_id: '401876912845-4iv1rbr1frlaq48dm8kfneiv1b7l7b4j.apps.googleusercontent.com',
-              // Scopes to request in addition to 'profile' and 'email'
-              scope: 'profile email'
-            });
-          });
-        }
-      </script>
-    </head>
+<head>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#317EFB"/>
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Autenticação com Google oAuth</title>
+  <meta name="google-signin-client_id" content="401876912845-4iv1rbr1frlaq48dm8kfneiv1b7l7b4j.apps.googleusercontent.com">
+  <meta name="google-signin-scope" content="profile email">
+  <script src="./public/js/criaSW.js"></script>
+  <!-- Bootstrap CSS -->
+
+  <script>
+  function start() {
+    gapi.load('auth2', function() {
+      auth2 = gapi.auth2.init({
+        client_id: '401876912845-4iv1rbr1frlaq48dm8kfneiv1b7l7b4j.apps.googleusercontent.com',
+        // Scopes to request in addition to 'profile' and 'email'
+        scope: 'profile email'
+      });
+    });
+  }
+  </script>
+</head>
 <body>
-    <h1 class="text-center">Trabalho de Desenvolvimento Mobile</h1>
+  <h1 class="text-center">Trabalho de Desenvolvimento Mobile</h1>
   <hr>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div  class="container">
@@ -39,81 +45,81 @@
       </div>
     </div>
   </nav>
-    <a class="nav-item nav-link" href="#" onclick="signOut();">Logout</a>
-    <script>
-        function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                auth2.currentUser.get().reloadAuthResponse();
-            });
-        }
-    </script>
+  <a class="nav-item nav-link" href="#" onclick="signOut();">Logout</a>
+  <script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      auth2.currentUser.get().reloadAuthResponse();
+    });
+  }
+  </script>
 
-    <div class="row justify-content-md-center mt-4">
-        <div class="col-2">
-            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-        </div>
+  <div class="row justify-content-md-center mt-4">
+    <div class="col-2">
+      <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     </div>
+  </div>
 
-    <div>
-        ID: <span id="id"></span> <br>
-        Full Name: <span id="fullname"></span><br>
-        Given Name: <span id="givenname"></span><br>
-        Family Name: <span id="familyname"></span><br>
-        Image URL: <img src="" id="image"><br>
-        E-mail: <span id="email"></span><br>
-    </div>
+  <div>
+    ID: <span id="id"></span> <br>
+    Full Name: <span id="fullname"></span><br>
+    Given Name: <span id="givenname"></span><br>
+    Family Name: <span id="familyname"></span><br>
+    Image URL: <img src="" id="image"><br>
+    E-mail: <span id="email"></span><br>
+  </div>
 
-    <script src="https://apis.google.com/js/client:platform.js"></script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://apis.google.com/js/client:platform.js"></script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="public/js/api.js"></script>
   <link rel="stylesheet" href="public/css/css.css"/>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script>
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-            console.log('Full Name: ' + profile.getName());
-            console.log('Given Name: ' + profile.getGivenName());
-            console.log('Family Name: ' + profile.getFamilyName());
-            console.log("Image URL: " + profile.getImageUrl());
-            console.log("E-mail: " + profile.getEmail());
+  <script>
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("E-mail: " + profile.getEmail());
 
-            $("#id").html(profile.getId());
-            $("#fullname").html(profile.getName());
-            $("#givenname").html(profile.getGivenName());
-            $("#familyname").html(profile.getFamilyName());
-            $("#image").attr("src", profile.getImageUrl());
-            $("#email").html(profile.getEmail());
+    $("#id").html(profile.getId());
+    $("#fullname").html(profile.getName());
+    $("#givenname").html(profile.getGivenName());
+    $("#familyname").html(profile.getFamilyName());
+    $("#image").attr("src", profile.getImageUrl());
+    $("#email").html(profile.getEmail());
 
-            // The ID token you need to pass to your backend:
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log("ID Token: " + id_token);
-        }
-    </script>
-    
-    <script>
-        $(document).ready(function() {
-            start();
-        });
-    </script>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <footer class="bg-secondary pt-4 pb-4">
+    // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+  }
+  </script>
+
+  <script>
+  $(document).ready(function() {
+    start();
+  });
+  </script>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <footer class="bg-secondary pt-4 pb-4">
     <div class="container d-flex justify-content-between align-items-center">
       <span>
         @2019 Direitos reservados Bruna Klaumann e Matheus Miliorini
       </span>
     </div>
-</footer>
+  </footer>
 </body>
 </html>

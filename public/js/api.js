@@ -26,6 +26,9 @@ $(document).ready(function() {
         html += `</div>`;
         $(".listaProdutos").prepend(html);
       });
+    },
+    error() {
+      console.log("Impossível buscar dados!");
     }
   });
 
@@ -45,6 +48,9 @@ $(document).ready(function() {
         html    += `<td class="opcaoTabela excluir" data-nome="${cat.nome}" data-id="${cat.categoria_id}">Excluir</td></tr>`;
         $tabelaCategorias.append(html);
       });
+    },
+    error() {
+      console.log("Impossível buscar dados!");
     }
   });
 
